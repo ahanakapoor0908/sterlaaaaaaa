@@ -2,265 +2,344 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STERLA Full Version Expanded</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STERLA Fixed Version</title>
+<style>
+/* ------------------ GLOBAL ------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+}
 
-    <!-- ================== STYLES ================== -->
-    <style>
-        /* -------------------- GLOBAL -------------------- */
+body {
+    background: linear-gradient(135deg, #e8f1ff, #ffffff);
+    height: 100vh;
+    overflow: hidden;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Poppins, sans-serif;
-        }
+/* ------------------ LOGIN ------------------ */
+#loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
-        body {
-            background: linear-gradient(135deg, #e8f1ff, #ffffff);
-            height: 100vh;
-            overflow: hidden;
-        }
+.login-card {
+    width: 420px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    text-align: center;
+    animation: fadeUp 0.7s ease;
+}
 
-        /* -------------------- LOGIN -------------------- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 
-        #loginPage {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .login-card {
-            width: 420px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(20px);
-            text-align: center;
-            animation: fadeUp 0.7s ease;
-        }
+.login-card h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #0d47a1;
+}
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+#nameInput {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid #0d47a1;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.role-btn {
+    width: 48%;
+    padding: 12px;
+    background: #0d47a1;
+    color: white;
+    border: none;
+    margin: 5px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .login-card h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #0d47a1;
-        }
+.role-btn:hover {
+    background: #1565c0;
+}
 
-        #nameInput {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 2px solid #0d47a1;
-            outline: none;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+/* ------------------ APP ------------------ */
+#app {
+    display: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
 
-        .role-btn {
-            width: 48%;
-            padding: 12px;
-            background: #0d47a1;
-            color: white;
-            border: none;
-            margin: 5px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+/* ------------------ SIDEBAR ------------------ */
+.sidebar {
+    width: 250px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    border-right: 2px solid rgba(255, 255, 255, 0.4);
+    height: 100vh;
+    position: relative;
+    transition: width 0.3s;
+}
 
-        .role-btn:hover {
-            background: #1565c0;
-        }
+.sidebar.collapsed {
+    width: 70px;
+}
 
-        /* -------------------- APP -------------------- */
+.hamburger {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    background: #0d47a1;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+}
 
-        #app {
-            display: none;
-            width: 100%;
-            height: 100%;
-            display: flex;
-        }
+.sidebar h2 {
+    color: #0d47a1;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 22px;
+}
 
-        /* -------------------- SIDEBAR -------------------- */
+.sidebar.collapsed h2 {
+    display: none;
+}
 
-        .sidebar {
-            width: 250px;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(15px);
-            border-right: 2px solid rgba(255, 255, 255, 0.4);
-            height: 100vh;
-            position: relative;
-            transition: width 0.3s;
-        }
+.nav-btn {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    color: #0d47a1;
+    transition: 0.2s;
+}
 
-        .sidebar.collapsed {
-            width: 70px;
-        }
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
 
-        .hamburger {
-            position: absolute;
-            top: 20px;
-            right: -40px;
-            background: #0d47a1;
-            color: white;
-            padding: 10px 14px;
-            border-radius: 12px;
-            cursor: pointer;
-        }
+.nav-icon {
+    margin-right: 10px;
+}
 
-        .sidebar h2 {
-            color: #0d47a1;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 22px;
-        }
+.sidebar.collapsed .nav-text {
+    display: none;
+}
 
-        .sidebar.collapsed h2 {
-            display: none;
-        }
+/* ------------------ CONTENT ------------------ */
+.content {
+    width: 100%;
+    padding: 30px;
+    overflow-y: scroll;
+}
 
-        .nav-btn {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            border: none;
-            text-align: left;
-            font-size: 16px;
-            cursor: pointer;
-            color: #0d47a1;
-            transition: 0.2s;
-        }
+.content h1 {
+    color: #0d47a1;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
 
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
 
-        .nav-icon {
-            margin-right: 10px;
-        }
+.subject-card {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .sidebar.collapsed .nav-text {
-            display: none;
-        }
+.subject-card:hover {
+    transform: translateY(-5px);
+}
 
-        /* -------------------- CONTENT -------------------- */
+.mindmap-bubble {
+    width: max-content;
+    padding: 15px 25px;
+    background: #bbdefb;
+    border-radius: 50px;
+    margin: 12px auto;
+    font-size: 18px;
+    color: #0d47a1;
+    animation: bubble 0.4s ease;
+}
 
-        .content {
-            width: 100%;
-            padding: 30px;
-            overflow-y: scroll;
-        }
+@keyframes bubble {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
 
-        .content h1 {
-            color: #0d47a1;
-            margin-bottom: 20px;
-            font-size: 32px;
-        }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+.quiz-card,
+.worksheet-card,
+.hw-card {
+    background: #ffffffaa;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 10px 0;
+}
 
-        .subject-card {
-            background: rgba(255, 255, 255, 0.5);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: 0.3s;
-        }
+textarea {
+    resize: none;
+}
 
-        .subject-card:hover {
-            transform: translateY(-5px);
-        }
+#chatContainer {
+    height: 200px;
+    overflow-y: scroll;
+    border: 1px solid #0d47a1;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.5);
+}
 
-        .mindmap-bubble {
-            width: max-content;
-            padding: 15px 25px;
-            background: #bbdefb;
-            border-radius: 50px;
-            margin: 12px auto;
-            font-size: 18px;
-            color: #0d47a1;
-            animation: bubble 0.4s ease;
-        }
+#chatInput {
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #0d47a1;
+}
 
-        @keyframes bubble {
-            from {
-                transform: scale(0.7);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .quiz-card,
-        .worksheet-card,
-        .hw-card {
-            background: #ffffffaa;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 10px 0;
-        }
-
-        textarea {
-            resize: none;
-        }
-
-        #chatContainer {
-            height: 200px;
-            overflow-y: scroll;
-            border: 1px solid #0d47a1;
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        #chatInput {
-            width: 80%;
-            padding: 10px;
-            border-radius: 10px;
-            border: 2px solid #0d47a1;
-        }
-
-        #sendBtn {
-            padding: 10px 15px;
-            background: #0d47a1;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-    </style>
+#sendBtn {
+    padding: 10px 15px;
+    background: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+</style>
 </head>
 
 <body>
+<div id="loginPage">
+    <div class="login-card">
+        <h1>STERLA Login</h1>
+        <input id="nameInput" type="text" placeholder="Enter your name" />
+        <div>
+            <button class="role-btn" onclick="login('student')">Student</button>
+            <button class="role-btn" onclick="login('teacher')">Teacher</button>
+        </div>
+    </div>
+</div>
 
-<!-- FULL HTML AND APP STRUCTURE (Login, Sidebar, Content) same as previous code -->
+<div id="app">
+    <div class="sidebar" id="sidebar">
+        <div class="hamburger" onclick="toggleSidebar()">≡</div>
+        <h2 id="userRoleTitle">Dashboard</h2>
+        <button class="nav-btn" onclick="showPage('homePage')"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></button>
+        <button class="nav-btn" onclick="showPage('subjectsPage')"><span class="nav-icon">📘</span><span class="nav-text">Subjects</span></button>
+        <button class="nav-btn" onclick="showPage('mindmapPage')"><span class="nav-icon">🧠</span><span class="nav-text">Mind Map</span></button>
+        <button class="nav-btn" onclick="showPage('quizPage')"><span class="nav-icon">❓</span><span class="nav-text">Quiz</span></button>
+        <button class="nav-btn" onclick="showPage('worksheetPage')"><span class="nav-icon">📄</span><span class="nav-text">Worksheet</span></button>
+        <button class="nav-btn" onclick="showPage('homeworkPage')"><span class="nav-icon">📤</span><span class="nav-text">Submit Homework</span></button>
+        <div id="teacherOnly" style="display:none;">
+            <button class="nav-btn" onclick="showPage('studentListPage')"><span class="nav-icon">🧑‍🎓</span><span class="nav-text">View Students</span></button>
+            <button class="nav-btn" onclick="showPage('teacherHWPage')"><span class="nav-icon">📥</span><span class="nav-text">View Homework</span></button>
+            <button class="nav-btn" onclick="showPage('chatPage')"><span class="nav-icon">💬</span><span class="nav-text">Chat</span></button>
+        </div>
+    </div>
+
+    <div class="content" id="content">
+        <div id="homePage">
+            <h1 id="welcomeTitle">Welcome!</h1>
+            <p>Select an option from the sidebar to begin.</p>
+        </div>
+
+        <div id="subjectsPage" style="display:none;">
+            <h1>Choose a Subject</h1>
+            <div class="subject-grid">
+                <div class="subject-card" onclick="selectSubject('math')">Math – Direct & Inverse Variation</div>
+                <div class="subject-card" onclick="selectSubject('social')">Social – Revolt of 1857</div>
+                <div class="subject-card" onclick="selectSubject('biology')">Biology – Microorganisms</div>
+                <div class="subject-card" onclick="selectSubject('physics')">Physics – Force & Pressure</div>
+                <div class="subject-card" onclick="selectSubject('chemistry')">Chemistry – Coal & Petroleum</div>
+                <div class="subject-card" onclick="selectSubject('computer')">Computer – Data & Its Types</div>
+                <div class="subject-card" onclick="selectSubject('french')">French – ER Verb Conjugation</div>
+            </div>
+        </div>
+
+        <div id="mindmapPage" style="display:none;">
+            <h1>Mind Map</h1>
+            <div id="mindmapContainer"></div>
+        </div>
+
+        <div id="quizPage" style="display:none;">
+            <h1>Quiz</h1>
+            <div id="quizContainer"></div>
+        </div>
+
+        <div id="worksheetPage" style="display:none;">
+            <h1>Worksheet</h1>
+            <div id="worksheetContainer"></div>
+        </div>
+
+        <div id="homeworkPage" style="display:none;">
+            <h1>Submit Homework</h1>
+            <textarea id="hwText" placeholder="Write your homework answer here..."></textarea><br>
+            <button class="role-btn" onclick="submitHW()">Submit</button>
+            <div id="hwSubmitMsg"></div>
+        </div>
+
+        <div id="studentListPage" style="display:none;">
+            <h1>Students Logged In</h1>
+            <div id="studentList"></div>
+        </div>
+
+        <div id="teacherHWPage" style="display:none;">
+            <h1>Homework Submissions</h1>
+            <div id="allHW"></div>
+        </div>
+
+        <div id="chatPage" style="display:none;">
+            <h1>Class Chat</h1>
+            <div id="chatContainer"></div>
+            <input id="chatInput" placeholder="Type your message...">
+            <button id="sendBtn">Send</button>
+        </div>
+
+    </div>
+</div>
 
 <script>
-// ================== JS VARIABLES ==================
+// ================== VARIABLES ==================
 let currentUser='';
 let currentRole='';
 let currentSubject='';
@@ -268,46 +347,44 @@ let students=[];
 let homeworkData=[];
 let chatHistory=[];
 
-// ================== LOGIN FUNCTION ==================
+// ================== LOGIN ==================
 function login(role){
-    const name = document.getElementById('nameInput').value.trim();
-    if(!name){
-        alert('Enter your name!');
-        return;
-    }
-    currentUser = name;
-    currentRole = role;
-    if(role==='student'){
-        students.push(name);
-    }
+    const name=document.getElementById('nameInput').value.trim();
+    if(!name){alert('Enter your name!'); return;}
+    currentUser=name;
+    currentRole=role;
+    if(role==='student') students.push(name);
     document.getElementById('loginPage').style.display='none';
     document.getElementById('app').style.display='flex';
-    document.getElementById('welcomeTitle').innerText = `Hello ${name} (${role==='teacher'?'Teacher':'Student'})`;
-    document.getElementById('teacherOnly').style.display = (role==='teacher') ? 'block':'none';
+    document.getElementById('welcomeTitle').innerText=`Hello ${name} (${role==='teacher'?'Teacher':'Student'})`;
+    document.getElementById('teacherOnly').style.display=(role==='teacher')?'block':'none';
 }
 
-// ================== SIDEBAR TOGGLE ==================
+// ================== SIDEBAR ==================
 function toggleSidebar(){
     document.getElementById('sidebar').classList.toggle('collapsed');
 }
 
-// ================== PAGE NAVIGATION ==================
+// ================== PAGE NAV ==================
 function showPage(pageID){
     let pages=['homePage','subjectsPage','mindmapPage','quizPage','worksheetPage','homeworkPage','studentListPage','teacherHWPage','chatPage'];
-    pages.forEach(p => { document.getElementById(p).style.display='none'; });
+    pages.forEach(p=>document.getElementById(p).style.display='none');
     document.getElementById(pageID).style.display='block';
+    if(pageID==='mindmapPage') document.getElementById('mindmapContainer').innerHTML=generateMindMap(currentSubject || 'social');
+    if(pageID==='quizPage') document.getElementById('quizContainer').innerHTML=generateQuiz(currentSubject || 'social');
+    if(pageID==='worksheetPage') document.getElementById('worksheetContainer').innerHTML=generateWorksheet(currentSubject || 'social');
     if(pageID==='studentListPage') updateStudentList();
     if(pageID==='teacherHWPage') updateTeacherHW();
     if(pageID==='chatPage') updateChat();
 }
 
-// ================== SUBJECT SELECT ==================
+// ================== SUBJECT ==================
 function selectSubject(sub){
     currentSubject=sub;
     alert('Subject selected: '+sub.toUpperCase());
 }
 
-// ================== MINDMAP GENERATOR ==================
+// ================== MINDMAP ==================
 function generateMindMap(sub){
     const map={
         math:['Direct Variation','Inverse Variation','x/y Patterns','Real-life ratios'],
@@ -319,13 +396,11 @@ function generateMindMap(sub){
         french:['ER Verb Rules','Conjugation Endings','Examples']
     };
     let html='';
-    (map[sub]||[]).forEach(item => {
-        html += `<div class='mindmap-bubble'>${item}</div>`;
-    });
+    (map[sub]||[]).forEach(item=>{html+=`<div class='mindmap-bubble'>${item}</div>`;});
     return html;
 }
 
-// ================== QUIZ GENERATOR ==================
+// ================== QUIZ ==================
 function generateQuiz(sub){
     const q={
         math:[['What varies directly?','x and y'],['What varies inversely?','x and 1/y']],
@@ -337,41 +412,39 @@ function generateQuiz(sub){
         french:[['ER verbs end with…','ER'],['Je + parler =','Je parle']]
     };
     let html='';
-    (q[sub]||[]).forEach(pair => {
-        html+=`<div class='quiz-card'><b>Q:</b> ${pair[0]}<br><b>Ans:</b> ${pair[1]}</div>`;
-    });
+    (q[sub]||[]).forEach(pair=>{html+=`<div class='quiz-card'><b>Q:</b> ${pair[0]}<br><b>Ans:</b> ${pair[1]}</div>`;});
     return html;
 }
 
-// ================== WORKSHEET GENERATOR ==================
+// ================== WORKSHEET ==================
 function generateWorksheet(sub){
     let html='';
-    html += `<div class='worksheet-card'>Write 5 key points about ${sub}.</div>`;
-    html += `<div class='worksheet-card'>Explain in your own words.</div>`;
-    html += `<div class='worksheet-card'>Draw diagram if applicable.</div>`;
+    html+=`<div class='worksheet-card'>Write 5 key points about ${sub}.</div>`;
+    html+=`<div class='worksheet-card'>Explain in your own words.</div>`;
+    html+=`<div class='worksheet-card'>Draw diagram if applicable.</div>`;
     return html;
 }
 
-// ================== HOMEWORK SUBMISSION ==================
+// ================== HOMEWORK ==================
 function submitHW(){
     const hw=document.getElementById('hwText').value;
-    if(!hw){ alert('Enter homework!'); return; }
+    if(!hw){alert('Enter homework!'); return;}
     homeworkData.push({student:currentUser,text:hw});
     document.getElementById('hwSubmitMsg').innerHTML='Submitted!';
     document.getElementById('hwText').value='';
 }
 
-// ================== STUDENT LIST ==================
+// ================== STUDENTS LIST ==================
 function updateStudentList(){
     let html='';
-    students.forEach(s => html += `<div class='hw-card'>${s}</div>`);
+    students.forEach(s=>html+=`<div class='hw-card'>${s}</div>`);
     document.getElementById('studentList').innerHTML=html;
 }
 
-// ================== TEACHER HOMEWORK VIEW ==================
+// ================== TEACHER HW ==================
 function updateTeacherHW(){
     let html='';
-    homeworkData.forEach(hw => html += `<div class='hw-card'><b>${hw.student}</b>: ${hw.text}</div>`);
+    homeworkData.forEach(hw=>html+=`<div class='hw-card'><b>${hw.student}</b>: ${hw.text}</div>`);
     document.getElementById('allHW').innerHTML=html;
 }
 
@@ -379,33 +452,20 @@ function updateTeacherHW(){
 function updateChat(){
     const container=document.getElementById('chatContainer');
     container.innerHTML='';
-    chatHistory.forEach(msg => container.innerHTML+=`<div class='hw-card'><b>${msg.user}</b>: ${msg.text}</div>`);
+    chatHistory.forEach(msg=>container.innerHTML+=`<div class='hw-card'><b>${msg.user}</b>: ${msg.text}</div>`);
     container.scrollTop = container.scrollHeight;
 }
 
-document.getElementById('sendBtn').onclick = () => {
-    const text = document.getElementById('chatInput').value.trim();
+document.getElementById('sendBtn').onclick=()=>{
+    const text=document.getElementById('chatInput').value.trim();
     if(!text) return;
-    chatHistory.push({user: currentUser, text: text});
+    chatHistory.push({user:currentUser,text:text});
     document.getElementById('chatInput').value='';
     updateChat();
 }
-
-// ================== EVENT LISTENERS ==================
-document.getElementById('mindmapPage').onclick = () => {
-    document.getElementById('mindmapContainer').innerHTML = generateMindMap(currentSubject);
-};
-document.getElementById('quizPage').onclick = () => {
-    document.getElementById('quizContainer').innerHTML = generateQuiz(currentSubject);
-};
-document.getElementById('worksheetPage').onclick = () => {
-    document.getElementById('worksheetContainer').innerHTML = generateWorksheet(currentSubject);
-};
-
 </script>
 
 </body>
-
 </html>
 
 
